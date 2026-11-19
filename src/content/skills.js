@@ -1,0 +1,114 @@
+/**
+ * Skill categories shown as tabs. Add a category by adding an object;
+ * add a skill by appending to `skills`. `usedIn` is optional context.
+ */
+export const skillCategories = [
+  {
+    id: 'languages',
+    title: 'Programming languages',
+    blurb: 'Python for systems and ML, C/C++ for fundamentals, SQL for data, and the web trio for interfaces.',
+    skills: [
+      { name: 'Python', usedIn: 'PlantTwin AI, Agentic RAG, DeepTrust' },
+      { name: 'C/C++', usedIn: 'Data structures & algorithms' },
+      { name: 'SQL', usedIn: 'TimescaleDB, PostgreSQL, SQLite schemas' },
+      { name: 'JavaScript', usedIn: 'MQTT chat engine, POS frontend' },
+      { name: 'HTML', usedIn: 'Web interfaces' },
+      { name: 'CSS', usedIn: 'Web interfaces' },
+      { name: 'Julia', usedIn: 'Reactor modelling' },
+    ],
+  },
+  {
+    id: 'backend',
+    title: 'Backend engineering',
+    blurb: 'APIs and services designed around clear boundaries, measurable latency and tested failure paths.',
+    skills: [
+      { name: 'FastAPI' },
+      { name: 'Flask', usedIn: 'DeepTrust, Cafe POS' },
+      { name: 'REST APIs', usedIn: 'PlantTwin AI, DeepTrust' },
+      { name: 'WebSockets', usedIn: 'PlantTwin AI dashboards' },
+      { name: 'Server-Sent Events', usedIn: 'DeepTrust live scores' },
+      { name: 'Microservices', usedIn: 'PlantTwin AI' },
+      { name: 'Authentication & RBAC', usedIn: 'Cafe POS' },
+      { name: 'OOP', usedIn: 'Across projects' },
+      { name: 'Data structures & algorithms' },
+    ],
+  },
+  {
+    id: 'databases',
+    title: 'Databases',
+    blurb: 'Relational, time-series and vector storage, each chosen for its access pattern.',
+    skills: [
+      { name: 'PostgreSQL' },
+      { name: 'TimescaleDB', usedIn: 'Hypertables, chunk partitioning' },
+      { name: 'MySQL' },
+      { name: 'SQLite', usedIn: '3NF schema, ACID transactions' },
+      { name: 'ChromaDB', usedIn: 'Persistent vector storage for RAG' },
+    ],
+  },
+  {
+    id: 'ml',
+    title: 'AI & machine learning',
+    blurb: 'Model training, evaluation and error analysis, from classical baselines to deep networks.',
+    skills: [
+      { name: 'PyTorch', usedIn: 'Vision, GANs, surrogate models' },
+      { name: 'TensorFlow' },
+      { name: 'scikit-learn' },
+      { name: 'Deep learning' },
+      { name: 'NLP', usedIn: 'Multi-label text classification' },
+      { name: 'NumPy & Pandas' },
+      { name: 'Data analysis & visualization' },
+    ],
+  },
+  {
+    id: 'vision',
+    title: 'Computer vision',
+    blurb: 'Detection and segmentation pipelines measured on standard benchmarks and real-time throughput.',
+    skills: [
+      { name: 'OpenCV', usedIn: 'Preprocessing and augmentation' },
+      { name: 'Object detection', usedIn: 'Mask-DINO, 46.8 mAP' },
+      { name: 'Instance segmentation', usedIn: 'Mask-DINO' },
+      { name: 'Vision transformers' },
+      { name: 'GPU inference optimisation', usedIn: '38 FPS real-time' },
+    ],
+  },
+  {
+    id: 'genai',
+    title: 'Generative AI',
+    blurb: 'LLM systems that retrieve, reason with tools and cite their sources.',
+    skills: [
+      { name: 'LangChain', usedIn: 'Agentic RAG' },
+      { name: 'Retrieval-augmented generation', usedIn: '+28% retrieval precision' },
+      { name: 'Agentic AI & tool-calling', usedIn: 'PlantTwin AI, Agentic RAG' },
+      { name: 'Multi-agent orchestration' },
+      { name: 'Vector embeddings' },
+      { name: 'LLM root-cause analysis', usedIn: 'PlantTwin AI' },
+      { name: 'GANs', usedIn: 'SEAttnGAN' },
+    ],
+  },
+  {
+    id: 'distributed',
+    title: 'Distributed systems & networking',
+    blurb: 'Event-driven pipelines and industrial protocols, from PLC to browser.',
+    skills: [
+      { name: 'MQTT', usedIn: 'PlantTwin AI, chat engine' },
+      { name: 'OPC-UA', usedIn: 'PLC integration' },
+      { name: 'Pub/sub messaging' },
+      { name: 'Streaming pipelines', usedIn: '1,200+ events/sec' },
+      { name: 'Siemens S7 PLC', usedIn: 'Hardware-in-the-loop testing' },
+      { name: 'Event-driven architecture' },
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Tools & DevOps',
+    blurb: 'Reproducible environments and tests that run on every change.',
+    skills: [
+      { name: 'Docker', usedIn: 'Containerized pipelines' },
+      { name: 'Git' },
+      { name: 'PyTest', usedIn: '85%+ coverage on RAG engine' },
+      { name: 'CI/CD', usedIn: 'Dockerized pipelines' },
+      { name: 'Streamlit', usedIn: 'RAG interface' },
+      { name: 'Aspen Plus', usedIn: 'Process simulation' },
+    ],
+  },
+];
