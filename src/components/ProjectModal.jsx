@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ExternalLink, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, PlayCircle, X } from 'lucide-react';
 import { ProjectVisual } from './visuals/ProjectVisual';
 import { GitHubIcon } from './ui/Icons';
 
@@ -51,7 +51,7 @@ export default function ProjectModal({ project, onClose, onPrev, onNext, positio
       first.focus();
     }
   };
-  const { github, live } = project.links;
+  const { github, live, video } = project.links;
   return (
     <motion.div
       className="fixed inset-0 z-[60] flex items-end justify-center sm:items-center sm:p-6"
@@ -131,7 +131,7 @@ export default function ProjectModal({ project, onClose, onPrev, onNext, positio
                 {project.title}
               </h2>
               <p className="mt-4 max-w-[62ch] text-[1.0625rem] leading-relaxed text-muted">{project.tagline}</p>
-              {(github || live) && (
+              {(github || live || video) && (
                 <div className="mt-6 flex flex-wrap gap-2">
                   {github && (
                     <a href={github} target="_blank" rel="noreferrer" className="btn btn-outline">
@@ -143,6 +143,11 @@ export default function ProjectModal({ project, onClose, onPrev, onNext, positio
                       <ExternalLink className="h-4 w-4" aria-hidden="true" /> Live demo
                     </a>
                   )}
+                  {video && (
+                    <a href={video} target="_blank" rel="noreferrer" className="btn btn-outline">
+                      <PlayCircle className="h-4 w-4" aria-hidden="true" /> Demo video
+                    </a>
+                  )}
                 </div>
               )}
             </header>
@@ -150,7 +155,7 @@ export default function ProjectModal({ project, onClose, onPrev, onNext, positio
             {project.metrics.length > 0 && (
               <dl className="mb-2 flex flex-wrap overflow-hidden rounded-2xl border cell-grid">
                 {project.metrics.map((m) => (
-                  <div key={m.label} className="flex min-w-[45%] flex-1 flex-col-reverse p-4 sm:min-w-[30%] sm:p-5">
+                  <div key={m.label} className={`flex min-w-[45%] flex-1 flex-col-reverse justify-end p-4 sm:p-5 ${project.metrics.length === 4 ? '' : 'sm:min-w-[30%]'}`}>
                     <dt className="mt-1 text-[0.8125rem] leading-snug text-muted">{m.label}</dt>
                     <dd className="font-display text-2xl tracking-tight sm:text-3xl">{m.value}</dd>
                   </div>

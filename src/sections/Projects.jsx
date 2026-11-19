@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, PlayCircle } from 'lucide-react';
 import { archive, projects } from '@/content';
 import { Section } from '@/components/ui/Section';
 import { Reveal } from '@/components/ui/Reveal';
@@ -8,7 +8,7 @@ import { ProjectVisual } from '@/components/visuals/ProjectVisual';
 import { cn } from '@/utils/cn';
 
 function ProjectLinks({ project }) {
-  const { github, live } = project.links;
+  const { github, live, video } = project.links;
   return (
     <>
       {github && (
@@ -27,6 +27,12 @@ function ProjectLinks({ project }) {
         <a href={live} target="_blank" rel="noreferrer" className="btn btn-ghost" aria-label={`${project.title} live demo`}>
           <ExternalLink className="h-4 w-4" aria-hidden="true" />
           Live demo
+        </a>
+      )}
+      {video && (
+        <a href={video} target="_blank" rel="noreferrer" className="btn btn-ghost" aria-label={`${project.title} demo video`}>
+          <PlayCircle className="h-4 w-4" aria-hidden="true" />
+          Demo video
         </a>
       )}
     </>
@@ -123,7 +129,8 @@ export function Projects({ onOpenProject }) {
           <Reveal>
             <h3 className="text-2xl sm:text-3xl">More experiments</h3>
             <p className="mt-3 max-w-[56ch] text-muted">
-              Research and coursework projects across vision, generative models, NLP and process engineering.
+              Agents, NLP, computer vision, control systems and process engineering: smaller builds and coursework, each with its
+              result.
             </p>
           </Reveal>
           <ul className="mt-10 border-t" style={{ borderColor: 'var(--line)' }}>

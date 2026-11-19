@@ -23,7 +23,7 @@ export const personal = {
     proof: [
       { value: '1,200+', label: 'telemetry events/sec in PlantTwin AI' },
       { value: '94.2%', label: 'precision in automated fault alerting' },
-      { value: '+28%', label: 'retrieval precision over naive search' },
+      { value: '1,311', label: 'rare-event transitions with an ML-learned CV, vs 0 for plain MD' },
       { value: '2×', label: 'Institute Football League champions as captain' },
     ],
   },

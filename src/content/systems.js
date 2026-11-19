@@ -36,7 +36,7 @@ export const systemDomains = [
       'Auth, RBAC & transactions',
       'Containerization & CI/CD',
     ],
-    technologies: ['FastAPI', 'Flask', 'PostgreSQL', 'TimescaleDB', 'Docker', 'PyTest'],
+    technologies: ['FastAPI', 'PostgreSQL', 'TimescaleDB', 'SQLite', 'Docker', 'PyTest'],
     workflow: [
       'Request arrives',
       'Authenticate and validate',

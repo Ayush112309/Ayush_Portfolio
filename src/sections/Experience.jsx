@@ -47,7 +47,7 @@ export function Experience({ onOpenProject }) {
                   style={{ borderColor: 'var(--line)' }}
                 >
                   {job.metrics.map((m) => (
-                    <div key={m.label} className="flex flex-col-reverse p-4">
+                    <div key={m.label} className="flex flex-col-reverse justify-end p-4">
                       <dt className="mt-0.5 text-[0.8125rem] text-muted">{m.label}</dt>
                       <dd className="font-display text-2xl tracking-tight">{m.value}</dd>
                     </div>

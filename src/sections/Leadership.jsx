@@ -40,7 +40,7 @@ export function Leadership() {
           <Reveal>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-b pb-10">
               {l.stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse">
+                <div key={s.label} className="flex flex-col-reverse justify-end">
                   <dt className="mt-1 max-w-[22ch] text-sm leading-snug text-muted">{s.label}</dt>
                   <dd className="font-display text-[clamp(2.2rem,4vw,3.2rem)] leading-none tracking-tight">{s.value}</dd>
                 </div>

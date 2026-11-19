@@ -251,7 +251,187 @@ function Audio() {
   );
 }
 
-const map = { twin: Twin, rag: Rag, mqtt: Mqtt, pos: Pos, audio: Audio };
+function Invoice() {
+  const stages = [1, 2, 3, 4, 5, 6, 7, 8];
+  const x = (i) => 96 + i * 29;
+  const tags = { 1: 'read', 4: 'match PO', 5: 'dupes', 7: 'decide' };
+  const outcomes = [
+    { label: 'approve', y: 62, color: C.accent },
+    { label: 'hold', y: 126, color: C.mid },
+    { label: 'reject', y: 190, color: C.mid },
+  ];
+  return (
+    <>
+      <g transform="translate(22 96)">
+        <path d="M0 0 H34 L46 12 V62 H0 Z" style={{ ...fill(C.surface), stroke: C.line, strokeWidth: 1.2 }} />
+        <path d="M34 0 V12 H46" style={stroke(C.line)} />
+        {[22, 30, 38, 46].map((y, i) => (
+          <rect key={y} x={8} y={y} width={i === 3 ? 18 : 30} height={4} rx={2} style={fill(C.faint)} />
+        ))}
+        <text x={0} y={80} fontSize="9.5" className="font-mono" style={fill(C.muted)}>
+          invoice.pdf
+        </text>
+      </g>
+      <line x1={70} x2={x(7)} y1={126} y2={126} style={stroke(C.line)} />
+      <line x1={70} x2={x(7)} y1={126} y2={126} style={stroke(C.mid, 1.2)} className="flow-line" />
+      {stages.map((n, i) => (
+        <g key={n}>
+          <circle
+            cx={x(i)}
+            cy={126}
+            r={10}
+            style={{ ...fill(C.surface), stroke: n === 8 ? C.accent : C.mid, strokeWidth: 1.3 }}
+          />
+          <text x={x(i)} y={129.5} textAnchor="middle" fontSize="9" className="font-mono" style={fill(C.ink)}>
+            {n}
+          </text>
+          {tags[i] && (
+            <text x={x(i)} y={i % 2 ? 152 : 104} textAnchor="middle" fontSize="9" className="font-mono" style={fill(C.muted)}>
+              {tags[i]}
+            </text>
+          )}
+        </g>
+      ))}
+      {outcomes.map((o) => (
+        <g key={o.label}>
+          <path
+            d={`M${x(7) + 10} 126 C 316 126, 312 ${o.y}, 326 ${o.y}`}
+            style={stroke(o.color === C.accent ? C.accent : C.line, 1.2)}
+          />
+          <rect
+            x={326}
+            y={o.y - 11}
+            width={56}
+            height={22}
+            rx={11}
+            style={{ ...fill(o.color === C.accent ? C.accentSoft : C.surface), stroke: o.color, strokeWidth: 1.2 }}
+          />
+          <text x={354} y={o.y + 3.5} textAnchor="middle" fontSize="9.5" className="font-mono" style={fill(C.ink)}>
+            {o.label}
+          </text>
+        </g>
+      ))}
+      <text x={22} y={238} fontSize="10" className="font-mono" style={fill(C.muted)}>
+        ai reads the document, rules make the decision
+      </text>
+    </>
+  );
+}
+
+function Md() {
+  const curve = 'M30 84 C 64 84, 84 204, 120 204 C 156 204, 178 70, 210 70 C 242 70, 262 168, 292 168 C 324 168, 344 96, 372 96';
+  const hop =
+    'M120 196 C 156 196, 178 62, 210 62 C 242 62, 262 160, 292 160 C 262 160, 242 62, 210 62 C 178 62, 156 196, 120 196';
+  return (
+    <>
+      <line x1={30} x2={372} y1={222} y2={222} style={stroke(C.line)} />
+      <line x1={30} x2={30} y1={40} y2={222} style={stroke(C.line)} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <ellipse
+          key={i}
+          cx={120}
+          cy={198 - i * 13}
+          rx={18 + i * 7}
+          ry={7}
+          style={{ ...fill(C.accentSoft), opacity: 0.9 - i * 0.12 }}
+        />
+      ))}
+      <path d={curve} style={stroke(C.ink, 1.5, { strokeLinejoin: 'round' })} />
+      <path id="pv-md-hop" d={hop} style={{ fill: 'none' }} />
+      <circle r={5} style={fill(C.accent)}>
+        <animateMotion
+          dur="4.2s"
+          repeatCount="indefinite"
+          keyPoints="0;0.5;1"
+          keyTimes="0;0.5;1"
+          calcMode="spline"
+          keySplines="0.6 0 0.4 1;0.6 0 0.4 1"
+        >
+          <mpath href="#pv-md-hop" />
+        </animateMotion>
+      </circle>
+      <text x={120} y={240} textAnchor="middle" fontSize="10" className="font-mono" style={fill(C.muted)}>
+        C7eq
+      </text>
+      <text x={292} y={240} textAnchor="middle" fontSize="10" className="font-mono" style={fill(C.muted)}>
+        C7ax
+      </text>
+      <text x={210} y={56} textAnchor="middle" fontSize="10" className="font-mono" style={fill(C.muted)}>
+        barrier
+      </text>
+      <text x={372} y={36} textAnchor="end" fontSize="10" className="font-mono" style={fill(C.muted)}>
+        free energy along the learned CV
+      </text>
+    </>
+  );
+}
+
+function Gan() {
+  const tiles = useMemo(() => {
+    const r = rng(11);
+    return Array.from({ length: 9 }, () => ({
+      a: 0.25 + r() * 0.45,
+      dx: (r() - 0.5) * 8,
+      dy: (r() - 0.5) * 6,
+      s: 0.8 + r() * 0.3,
+    }));
+  }, []);
+  const words = ['a small bird', 'with a red', 'crown and a', 'white belly'];
+  return (
+    <>
+      <rect x={20} y={74} width={112} height={78} rx={10} style={{ ...fill(C.surface), stroke: C.line, strokeWidth: 1.2 }} />
+      {words.map((w, i) => (
+        <text key={w} x={32} y={98 + i * 15} fontSize="10" className="font-mono" style={fill(i === 1 ? C.accent : C.ink)}>
+          {w}
+        </text>
+      ))}
+      <path d="M136 113 H158" style={stroke(C.mid, 1.2)} className="flow-line" />
+      <path d="M154 109 L160 113 L154 117" style={stroke(C.mid, 1.2)} />
+      {tiles.map((t, i) => {
+        const tx = 166 + (i % 3) * 42;
+        const ty = 52 + Math.floor(i / 3) * 42;
+        const best = i === 4;
+        return (
+          <g key={i}>
+            <rect
+              x={tx}
+              y={ty}
+              width={36}
+              height={36}
+              rx={6}
+              style={{ ...fill(C.faint), stroke: best ? C.accent : 'none', strokeWidth: 1.5 }}
+            />
+            <g transform={`translate(${tx + 18 + t.dx / 2} ${ty + 20 + t.dy / 2}) scale(${t.s})`}>
+              <ellipse cx={0} cy={2} rx={10} ry={6.5} style={{ fill: `rgb(var(--ink) / ${t.a})` }} />
+              <circle cx={8} cy={-5} r={4.2} style={{ fill: `rgb(var(--ink) / ${t.a + 0.15})` }} />
+              <circle cx={8.5} cy={-7.5} r={2} style={fill(best ? C.accent : 'rgb(var(--ink) / 0.5)')} />
+            </g>
+          </g>
+        );
+      })}
+      <line x1={306} x2={384} y1={210} y2={210} style={stroke(C.line)} />
+      <rect x={312} y={210 - 139.79 * 0.9} width={24} height={139.79 * 0.9} rx={4} style={fill(C.line)} />
+      <rect x={350} y={210 - 118.76 * 0.9} width={24} height={118.76 * 0.9} rx={4} style={fill(C.accent)} />
+      <text x={324} y={226} textAnchor="middle" fontSize="9" className="font-mono" style={fill(C.muted)}>
+        base
+      </text>
+      <text x={362} y={226} textAnchor="middle" fontSize="9" className="font-mono" style={fill(C.muted)}>
+        +nce
+      </text>
+      <text x={384} y={66} textAnchor="end" fontSize="10" className="font-mono" style={fill(C.ink)}>
+        FID
+      </text>
+      <text x={384} y={79} textAnchor="end" fontSize="9" className="font-mono" style={fill(C.muted)}>
+        lower is better
+      </text>
+      <text x={20} y={238} fontSize="10" className="font-mono" style={fill(C.muted)}>
+        caption in, 256×256 image out
+      </text>
+    </>
+  );
+}
+
+const map = { twin: Twin, invoice: Invoice, rag: Rag, md: Md, gan: Gan, mqtt: Mqtt, pos: Pos, audio: Audio };
 
 export function ProjectVisual({ kind, className, label }) {
   const { ref, inView } = useInView('50px');
