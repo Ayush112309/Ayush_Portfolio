@@ -4,7 +4,7 @@
  */
 export const siteConfig = {
   /** TODO: replace with your deployed URL (used for canonical, Open Graph and sitemap). */
-  siteUrl: 'https://your-domain.com',
+  siteUrl: 'https://ayushjhori.vercel.app/',
   seo: {
     title: 'Ayush Jhori — AI, backend and real-time systems engineer',
     description:
